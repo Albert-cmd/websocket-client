@@ -1,0 +1,35 @@
+.Navbar{
+  overflow: hidden;
+  background-color: #333;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+  float: left;
+  display: flex;
+
+}
+
+.watch {
+  display: inline;
+  float: right;
+}
+
+.controlButtons {
+
+  display: flex;
+  justify-content: space-between;
+
+}
+.displayArea {
+
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 1;
+  height: 320px;
+  width: 480px;
+
+}
+
+

@@ -1,0 +1,33 @@
+html{
+    background-color: #282c34;
+
+}
+body{
+    background-color: #282c34;
+}
+.controlButtons{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.displayArea{
+
+    display: flex;
+    justify-content: center;
+
+}
+#imgdisplay{
+    width: 100%;
+    height: auto;
+    border-radius: 1%;
+
+}
+#videodisplay{
+    width: 100%;
+    height: auto;
+    border-radius: 1%;
+}
+.navbar-nav > button{
+    padding-left:30px;
+    padding-right:30px;
+}
