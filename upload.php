@@ -9,7 +9,6 @@ if(isset($_POST["submit"])) {
   if($check !== false) {
        //$msg = "File is an image - " . $check["mime"] . ".";
        //echo "<script type='text/javascript'>alert('$msg');</script>";
-
     $uploadOk = 1;
   } else {
     $msg= "File is not an image.";
@@ -42,10 +41,12 @@ if ($uploadOk == 0) {
    echo "<script type='text/javascript'>alert('$msg');</script>";
 // if everything is ok, try to upload file
 } else {
-    echo move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)
   if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     $msg =  "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+
+        header("Location: /websocket-client/img_processing.html");
         echo "<script type='text/javascript'>alert('$msg');</script>";
+
   } else {
     $msg =  "error en la subida del archivo.";
     echo "<script type='text/javascript'>alert('$msg');</script>";
