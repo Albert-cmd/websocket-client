@@ -38,19 +38,41 @@
     </nav>
 </header>
 <body>
+<script>
+
+</script>
 <div class="displayArea">
         <div class="col">
-
+            <table>
+                <tbody>
+                <tr>
+                    <td><img src="sample_images/sample.jpg" alt="img1" width="200" height="200"></td>
+                    <td><img src="sample_images/sample1.jpg" alt="img1" width="200" height="200"></td>
+                    <td><img src="sample_images/sample2.jpg" alt="img1" width="200" height="200"></td>
+                </tr>
+                <tr>
+                    <td><img src="sample_images/sample3.jpg" alt="img1" width="200" height="200"></td>
+                    <td><img src="sample_images/sample4.jpg" alt="img1" width="200" height="200"></td>
+                    <td><img src="sample_images/sample5.jpg" alt="img1" width="200" height="200"></td>
+                </tr>
+                <tr>
+                    <td><img src="sample_images/sample7.jpeg" alt="img1" width="200" height="200"></td>
+                    <td><img src="sample_images/sample8.jpeg" alt="img1" width="200" height="200"></td>
+                    <td><img src="sample_images/sample6.jpg" alt="img1" width="200" height="200"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
         <div class="col">
             <img id="imgdisplay" src="https://upload.wikimedia.org/wikipedia/commons/b/b5/800x600_Wallpaper_Blue_Sky.png"  alt="imagen"/>
         </div>
 </div>
 <div class="controlButtons">
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-        <input type="file" class="btn btn-primary" name="fileToUpload" id="fileToUpload" multiple onchange="saveFileName(this)">
+    <form action=""  enctype="multipart/form-data">
+        <input type="file" class="btn btn-primary" name="fileToUpload" id="fileToUpload" multiple onchange="base64convert(this)">
         <input type="submit" value="Upload Image" name="submit" class="btn btn-primary">
     </form>
+
     <button class="btn btn-primary" type="button" onclick="processRealImg()">Process selected img</button>
 </div>
 </body>
