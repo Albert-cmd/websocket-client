@@ -6,7 +6,6 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style/styles.css">
-    <link rel="stylesheet" href="style/style.css">
     <script src="script/img_upload.js"></script>
     <title>Adelte Door Recognition Client</title>
 </head>
@@ -60,10 +59,27 @@
 </script>
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="btn btn-primary btn-lg" role="button" href="index.html" type="button">Live Recording</a>
-        <a class="btn btn-primary btn-lg" href="#" role="button" type="button">Image Processing</a>
-        <a class="navbar-brand"  href="#">Adelte Door Detection Client</a>
-        <a id='watch' class="navbar-brand text-right" style="color: white"></a>
+        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="btn btn-primary btn-lg" role="button" href="index.html" type="button">Live cam</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary btn-lg" href="#" role="button" type="button">Image processing</a>
+                    </li>
+            </ul>
+        </div>
+
+        <div class="mx-auto order-0">
+            <a id="navbarLabel" class="navbar-brand mx-auto" style="color: white"> Adelte plane door detection client</a>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul  class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a id='watch' class="navbar-brand me-2" style="color: white"></a>
+                </li>
+            </ul>
+        </div>
     </nav>
 </header>
 <script type="text/javascript">
@@ -72,6 +88,7 @@
 
 </script>
 <body>
+<br>
 <div class="displayArea">
         <div class="col">
                 <table class="img_table">
@@ -142,9 +159,9 @@
                 menu.id = "contextMenu"
                 menu.style = `top:${e.pageY-10}px;left:${e.pageX-40}px`
                 menu.onmouseleave = () => contextMenu.outerHTML = ''
-                menu.innerHTML = "<p onclick='loadImgUrl()'>Sube imagen con URL</p>" +
-                    "<p onclick='loadImgFile()'>Sube archivo de imagen</p>" +
-                    "<p onclick='deleteImg()'>Elimina imagen</p>"
+                menu.innerHTML = "<p style='font-size: 23px'  onclick='loadImgUrl()'>Sube imagen con URL</p>" +
+                    "<p style='font-size: 23px' onclick='loadImgFile()'>Sube archivo de imagen</p>" +
+                    "<p style='font-size: 23px' onclick='deleteImg()'>Elimina imagen</p>"
                 document.body.appendChild(menu)
 
                 return false;
@@ -184,15 +201,26 @@
                 processData: false,
                 data: form_data,
                 type: 'post',
+                error: function(){
+                    window.alert('no se ha podido conectar con el servidor')
+                },
                 success: function(php_script_response){
-                    alert(php_script_response); // <-- display response from the PHP script, if any
+                   // alert(php_script_response); // <-- display response from the PHP script, if any
                     TargetImg.src = php_script_response;
+                },
+                timeout: 10000
+            }).then(function () {
+
+            }).catch(function (e) {
+                if(e.statusText == 'timeout'){
+
+                    window.alert('timeout: no se ha podido conectar con el servidor')
+
                 }
             });
 
         }
         input.click();
-        console.log()
     }
     function deleteImg(){
 

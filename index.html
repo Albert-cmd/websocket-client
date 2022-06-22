@@ -36,16 +36,39 @@
     // conectamos con el websocket tambien
     const socket = io('ws://127.0.0.1:8080/');
     socket.connect();
-
+    socket.on('connect_error', err => function () {
+        console.log('conexion con el websocket fallida, el websocket no esta arrancado')
+    })
+    socket.on('connect_failed', err => function () {
+        console.log('conexion con el websocket fallida, el websocket no esta arrancado')
+    })
 </script>
 <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a id="livebutton" class="btn btn-primary btn-lg" href="#" type="button">Live Recording</a>
-                <a class="btn btn-primary btn-lg" href="img_processing.html" type="button">Image Processing</a>
-                <a class="navbar-brand" href="#">Adelte Door Detection Client</a>
-                <a id='watch' class="navbar-brand text-right" style="color: white"></a>
-        </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="btn btn-primary btn-lg" role="button" href="#" type="button">Live cam</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-primary btn-lg" href="img_processing.html" role="button" type="button">Image processing</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mx-auto order-0">
+            <a id="navbarLabel" class="navbar-brand mx-auto" style="color: white"> Adelte plane door detection client</a>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul  class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a id='watch' class="navbar-brand me-2" style="color: white"></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </header>
+<br>
 <body>
     <div class="displayArea">
         <div class="col">

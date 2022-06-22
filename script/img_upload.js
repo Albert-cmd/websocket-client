@@ -51,8 +51,12 @@ function processSelectedImg(img){
                     },
                     contentType: 'application/json; charset=UTF-8',
                     type: 'post',
+
                     url: 'http://192.168.1.72:8080/process_real_img',
                     data: JSON.stringify( { "img": base64 } ),
+                    error: function(){
+                        window.alert('no se ha podido conectar con el servidor')
+                    },
                     success: function( data ){
                         try{
 
@@ -64,11 +68,20 @@ function processSelectedImg(img){
                             console.error(error.message)
                         }
                     },
+                    timeout: 20000,
                     complete:function(){
                         $('#spinner-div').hide();//quitamos el spipnnero porque ha finalizado la ejecucion
                         $('#imgdisplay').show()
                     }
                     ,dataType:"text"
+                }).then(function () {
+
+                }).catch(function (e) {
+                    if(e.statusText == 'timeout'){
+
+                        window.alert('se ha excedido el tiempo limite de conexion')
+
+                    }
                 });
 
             };
