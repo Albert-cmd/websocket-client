@@ -69,32 +69,7 @@ table, th, td
 }
 
 /*habria que adaptarlo a una tablet con la pantalla del tamaño de un portatil*/
-@media (max-width: 1025px) {
-    .imgGrid{
 
-    }
-
-    #imgdisplay{
-        border-radius: 1%;
-    }
-    #videodisplay{
-
-    }
-
-
-}
 
 /* para mostrar en la pantalla grande del showroom*/
-@media (max-width: 1201px) {
-    .imgGrid{
 
-
-
-    }
-    #imgdisplay{
-        border-radius: 1%;
-    }
-    #videodisplay{
-
-    }
-}
