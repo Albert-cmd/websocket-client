@@ -34,7 +34,7 @@
 </script>
 <script>
     // conectamos con el websocket tambien
-    const socket = io('ws://172.23.220.78:5000/');
+    const socket = io('http://192.168.1.72:8080/');
     socket.connect();
     socket.on('connect_error', err => function () {
         console.log('conexion con el websocket fallida, el websocket no esta arrancado')
