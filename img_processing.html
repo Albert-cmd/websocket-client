@@ -7,6 +7,7 @@
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style/styles.css">
     <script src="script/img_upload.js"></script>
+    <script src="script/manage_servers.js"></script>
     <title>Adelte Door Recognition Client</title>
 </head>
 <style>
@@ -57,15 +58,32 @@
 
     }
 </script>
+<script>
+    // conectamos con el websocket tambien
+    const socket = io('http://192.168.1.72:8080/');
+    socket.connect();
+    socket.on('connect_error',  function () {
+        console.log('conexion con el websocket fallida, el websocket no esta arrancado')
+    })
+    socket.on('connect_failed',  function () {
+        console.log('conexion con el websocket fallida, el websocket no esta arrancado')
+    })
+    socket.on('ec2_ready', function () {
+        window.alert('Servidores AWS iniciados')
+    })
+    socket.on('ec2_stopped', function () {
+        window.alert('Servidores AWS detenidos')
+    })
+</script>
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="btn btn-primary btn-lg" role="button" href="index.html" type="button">Live cam</a>
+                        <a class="btn btn-primary" role="button" href="index.html" type="button">Live cam</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-primary btn-lg" href="#" role="button" type="button">Image processing</a>
+                        <a class="btn btn-primary" href="#" role="button" type="button">Image processing</a>
                     </li>
             </ul>
         </div>
@@ -77,6 +95,12 @@
             <ul  class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a id='watch' class="navbar-brand me-2" style="color: white"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-success"  role="button" onclick="start_instances()" type="button">Iniciar servidores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-danger"  role="button" onclick="stop_instances()" type="button">Detener servidores</a>
                 </li>
             </ul>
         </div>
