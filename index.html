@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="style/styles.css">
     <script src="script/img_upload.js"></script>
     <script src="script/manage_servers.js"></script>
-    <meta charset="utf-8" />
     <title>Adelte Door Recognition Client</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
@@ -38,19 +37,19 @@
     const socket = io('http://192.168.1.72:8080/');
     socket.connect();
     socket.on('connect_error',  function () {
-        window.alert('conexion con el ws fallida')
+       // window.alert('conexion con el ws fallida')
         console.log('conexion con el websocket fallida, el websocket no esta arrancado')
     })
     socket.on('connect_failed',  function () {
-        window.alert('conexion con el ws fallida')
+       // window.alert('conexion con el ws fallida')
         console.log('conexion con el websocket fallida, el websocket no esta arrancado')
     })
     socket.on('ec2_ready', function () {
-        window.alert('Servidores AWS iniciados')
+       // window.alert('Servidores AWS iniciados')
         console.log('ec2 ready')
     })
     socket.on('ec2_stopped', function () {
-        window.alert('Servidores AWS detenidos')
+       // window.alert('Servidores AWS detenidos')
         console.log('ec2 stopped')
     })
 </script>
@@ -89,7 +88,28 @@
 <body>
     <div class="displayArea">
         <div class="col">
-            <iframe id="videodisplay" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" allow="encrypted-media" allowfullscreen></iframe>
+              
+    <input type="hidden" name="hlsll-url" id="hlsll-url"
+    value="http://localhost:8083/stream/stream1/channel/0/hlsll/live/index.m3u8">
+
+<video id="hlsll-video" autoplay muted playsinline controls
+    style="max-width: 100%; max-height: 100%;"></video>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const videoEl = document.querySelector('#hlsll-video')
+    const hlsllUrl = document.querySelector('#hlsll-url').value
+
+    if (Hls.isSupported()) {
+      const hls = new Hls()
+      hls.loadSource(hlsllUrl)
+      hls.attachMedia(videoEl)
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      videoEl.src = hlsllUrl
+    }
+  })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js"></script>
         </div>
         <div class="col">
             <img id="imgdisplay"  src="https://upload.wikimedia.org/wikipedia/commons/b/b5/800x600_Wallpaper_Blue_Sky.png" alt="imagen"/>
